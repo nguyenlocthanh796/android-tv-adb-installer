@@ -1,0 +1,15 @@
+# Platform tools binaries
+*.exe
+*.dll
+*.zip
+NOTICE.txt
+source.properties
+mke2fs.conf
+
+# Local configurations and cache
+.last_tv_ip
+*.pyc
+__pycache__/
+*.apk
+/tmp/
+temp_pt/
