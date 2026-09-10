@@ -64,7 +64,7 @@ install_apk() {
     echo "[*] Đang cài đặt lên TV..."
     adb -s "$TV_IP:5555" install -r -d "$TMP_APK" || adb install -r -d "$TMP_APK"
     rm -f "$TMP_APK"
-    echo "[✓] Cài đặt thành công: $name"
+    echo "[OK] Cài đặt thành công: $name"
 }
 
 combo_install() {
