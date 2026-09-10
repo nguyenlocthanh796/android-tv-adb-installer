@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Android TV ADB Installer - Professional 1-Click CLI
-Tu dong quet mang LAN tim Android TV, chon so de ket noi va chon so de cai app.
+Android TV ADB Installer - Full Catalog 1-Click CLI
+Hien thi day du toan bo 110+ ung dung theo 2 cot gon dep, tu do tim TV va chon so de cai dat.
 YAGNI: 100% Python Standard Library.
 """
 
@@ -141,7 +141,6 @@ def get_last_ip():
 
 def auto_connect_tv():
     """Tu dong do tim thiet bi hoac hien danh sach de chon so."""
-    # 1. Kiem tra thiet bi da ket noi san (qua USB hoac WiFi)
     active = get_connected_devices()
     if active:
         print(f"[OK] Phat hien thiet bi ADB dang ket noi:")
@@ -152,13 +151,11 @@ def auto_connect_tv():
             if ans in ["", "y", "yes"]:
                 return active[0]
 
-    # 2. Quet nhanh mang LAN tim TV bat port 5555
     print("\n[*] Dang tu dong do tim Android TV trong mang WiFi...")
     discovered = scan_lan_for_tvs()
     last_ip = get_last_ip()
 
     if last_ip and last_ip not in discovered:
-        # Kiem tra nhanh last_ip
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(0.4)
         if sock.connect_ex((last_ip, 5555)) == 0:
@@ -179,7 +176,6 @@ def auto_connect_tv():
         elif sel.isdigit() and 1 <= int(sel) <= len(discovered):
             target_ip = discovered[int(sel) - 1]
 
-    # 3. Neu khong do duoc hoac nguoi dung chon nhap thu cong
     if not target_ip:
         prompt = "Nhap dia chi IP cua TV"
         if last_ip:
@@ -226,7 +222,7 @@ def download_and_install(device, app_name, url):
                 sys.stdout.flush()
 
         urllib.request.urlretrieve(url, apk_path, progress)
-        print("\n    [INFO] Dang cai vao Android TV...")
+        print("\n    [INFO] Dang cai dat vao Android TV...")
         ok, out, err = run_adb(["-s", device, "install", "-r", "-d", apk_path])
         if ok or "Success" in out:
             print(f"    [OK] Da cai dat thanh cong: {app_name}")
@@ -273,89 +269,81 @@ def batch_install(device, app_list):
     print(f"[KET QUA] Da cai dat thanh cong: {success}/{total} ung dung")
     print(f"==========================================")
 
-def get_recommended_apps(apps):
-    """Loc top 10 app pho bien nhat de hien thi ngay tren man hinh chinh."""
-    keys = ["smart tube", "phim4k tv", "tivimate", "sportstv", "get out", "downloader", "xplorer", "totube", "vtvgo", "hop phim"]
-    top_apps = []
-    seen = set()
-    for k in keys:
-        for a in apps:
-            if k in a["name"].lower() and a["name"] not in seen and a.get("direct_url"):
-                top_apps.append(a)
-                seen.add(a["name"])
-                break
-    return top_apps
+def display_full_catalog(apps):
+    """In toan bo 110+ ung dung theo 2 cot gon dep, chia theo danh muc ro rang."""
+    cats = {}
+    for idx, a in enumerate(apps, 1):
+        c = a["category"]
+        if c not in cats:
+            cats[c] = []
+        cats[c].append((idx, a["name"]))
+
+    print("\n" + "=" * 75)
+    print("                DANH SACH TOAN BO 110+ UNG DUNG ANDROID TV")
+    print("=" * 75)
+
+    for cat_name, items in cats.items():
+        print(f"\n=== {cat_name} ({len(items)} app) ===")
+        for j in range(0, len(items), 2):
+            left = f"[{items[j][0]:3d}] {items[j][1][:30]}"
+            right = f"[{items[j+1][0]:3d}] {items[j+1][1][:30]}" if j + 1 < len(items) else ""
+            print(f"  {left:<37} {right}")
+    print("\n" + "=" * 75)
 
 def main():
     apps = load_apps()
-    print("=" * 60)
-    print("        ANDROID TV ADB INSTALLER - 1-CLICK TO TV        ")
-    print("=" * 60)
+    print("=" * 65)
+    print("       ANDROID TV ADB INSTALLER - FULL APP CATALOG 1-CLICK       ")
+    print("=" * 65)
 
-    # 1. Tu dong do TV va ket noi
     device = auto_connect_tv()
-    top_apps = get_recommended_apps(apps)
 
     while True:
-        print("\n" + "=" * 25 + " DANH SACH APP PHO BIEN " + "=" * 25)
-        print(f"Thiet bi TV dang ket noi: {device}")
-        for idx, a in enumerate(top_apps, 1):
-            print(f"  [{idx:2d}] {a['name']} ({a['category']})")
-        print("  -------------------------------------------------------------")
-        print("  [C]  Cai toan bo goi pho bien tren (1 click)")
-        print("  [T]  Tim kiem ung dung theo ten")
-        print("  [M]  Duyet tat ca theo 9 danh muc (110+ app)")
-        print("  [R]  Doi dia chi IP / Ket noi TV khac")
-        print("  [0]  Thoat")
-        print("  -------------------------------------------------------------")
+        # Hien thi toan bo 111 app
+        display_full_catalog(apps)
 
-        choice = input("Chon so app muon cai (vi du '1' hoac '1,3,5', '1-4', 'C'): ").strip()
+        print(f"Thiet bi dang ket noi: {device}")
+        print("Huong dan chon:")
+        print("  - Cai 1 app:    Nhap so (vi du: 58 de cai SmartTube)")
+        print("  - Cai nhieu app: Nhap so phan cach boi dau phay (vi du: 16, 50, 58, 108)")
+        print("  - Cai 1 khoang: Nhap tu-den (vi du: 1-15)")
+        print("  - Cai tat ca:   Nhap 'all'")
+        print("  - Chuc nang:    'T' de tim kiem | 'R' de doi TV | '0' de thoat")
+        print("---------------------------------------------------------------------------")
+
+        choice = input("Chon ung dung muon cai dat: ").strip()
 
         if choice == "0":
             print("[INFO] Da thoat chuong trinh.")
             break
-        elif choice.upper() == "C":
-            batch_install(device, top_apps)
+        elif choice.upper() == "R":
+            device = auto_connect_tv()
         elif choice.upper() == "T":
-            kw = input("\nNhap tu khoa tim kiem (vi du: bóng đá, youtube, phim): ").strip().lower()
+            kw = input("\nNhap tu khoa tim kiem (vi du: youtube, phim, bóng đá): ").strip().lower()
             results = [a for a in apps if kw in a["name"].lower() or kw in a["category"].lower()]
             if not results:
                 print("[WARN] Khong tim thay ung dung.")
                 continue
             print(f"\nKet qua tim kiem ({len(results)} ung dung):")
-            for i, a in enumerate(results, 1):
-                print(f"  [{i:2d}] {a['name']} ({a['category']})")
-            sel = input("\nChon so app de cai (vi du '1' hoac '1,3' hoac 'all', Enter de huy): ")
-            idx_list = parse_selections(sel, len(results))
+            for a in results:
+                idx = apps.index(a) + 1
+                print(f"  [{idx:3d}] {a['name']} ({a['category']})")
+            sel = input("\nChon so app muon cai (Enter de quay lai): ")
+            idx_list = parse_selections(sel, len(apps))
             if idx_list:
-                batch_install(device, [results[i - 1] for i in idx_list])
-        elif choice.upper() == "M":
-            cats = sorted(list(set(a["category"] for a in apps)))
-            print("\nDanh sach 9 danh muc:")
-            for i, c in enumerate(cats, 1):
-                cnt = sum(1 for a in apps if a["category"] == c)
-                print(f"  [{i}] {c} ({cnt} ung dung)")
-            c_sel = input(f"\nChon danh muc [1-{len(cats)}]: ").strip()
-            if c_sel.isdigit() and 1 <= int(c_sel) <= len(cats):
-                selected_cat = cats[int(c_sel) - 1]
-                cat_apps = [a for a in apps if a["category"] == selected_cat]
-                print(f"\nDanh sach [{selected_cat}]:")
-                for j, a in enumerate(cat_apps, 1):
-                    print(f"  [{j:2d}] {a['name']}")
-                sel = input("\nChon so de cai (vi du '1', '1,3', 'all', Enter de huy): ")
-                idx_list = parse_selections(sel, len(cat_apps))
-                if idx_list:
-                    batch_install(device, [cat_apps[i - 1] for i in idx_list])
-        elif choice.upper() == "R":
-            device = auto_connect_tv()
+                batch_install(device, [apps[i - 1] for i in idx_list])
         else:
-            # Chon truc tiep theo so tren danh sach top_apps
-            indices = parse_selections(choice, len(top_apps))
-            if indices:
-                selected_apps = [top_apps[i - 1] for i in indices]
-                batch_install(device, selected_apps)
+            idx_list = parse_selections(choice, len(apps))
+            if idx_list:
+                selected_apps = [apps[i - 1] for i in idx_list]
+                print(f"\n[*] Ban da chon {len(selected_apps)} ung dung de cai dat:")
+                for a in selected_apps:
+                    print(f"  - {a['name']}")
+                confirm = input("Xac nhan tien hanh cai dat? [Y/n]: ").strip().lower()
+                if confirm in ["", "y", "yes"]:
+                    batch_install(device, selected_apps)
             else:
-                print("[WARN] Lua chon khong hop le.")
+                print("[WARN] Lua chon khong hop le. Vui long chon theo so thu tu.")
 
 if __name__ == "__main__":
     main()
