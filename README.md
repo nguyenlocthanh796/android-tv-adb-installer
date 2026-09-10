@@ -92,11 +92,11 @@ Hệ điều hành iOS giới hạn thực thi tập tin nhị phân ADB trực 
 
 #### Phương pháp B: Sử dụng PowerShell hoặc Command Prompt
 ```powershell
-winget install Google.PlatformTools
 git clone https://github.com/nguyenlocthanh796/android-tv-adb-installer.git
 cd android-tv-adb-installer
 python installer.py
 ```
+*(Hệ thống sẽ tự động cấu hình Google Platform Tools nếu máy tính chưa có sẵn ADB).*
 
 ---
 
