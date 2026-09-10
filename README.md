@@ -2,91 +2,95 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)]()
-[![Apps](https://img.shields.io/badge/Apps-110%2B%20ATV%20Applications-blue.svg)](#danh-sach-ung-dung)
+[![Total Apps](https://img.shields.io/badge/Apps-110%2B%20ATV%20Applications-blue.svg)](#danh-sach-ung-dung)
+[![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)]()
 
-Bo cong cu quan tri va cai dat tu dong ung dung cho Android TV / Google TV / TV Box qua ket noi ADB khong day (Wireless ADB). Ho tro cai dat tu dien thoai Android, iPhone, iPad va may tinh (Windows, macOS, Linux).
-
----
-
-## Muc luc
-1. [Yeu cau va chuan bi tren Android TV](#chuan-bi-tren-android-tv)
-2. [Huong dan cai dat theo he dieu hanh](#huong-dan-cai-dat)
-   - [Android (Termux / Bugjaeger)](#1-android)
-   - [iOS (iPhone / iPad)](#2-ios-iphone--ipad)
-   - [Windows](#3-windows)
-   - [macOS](#4-macos)
-   - [Linux](#5-linux)
-3. [Danh sach ung dung & Ma Downloader](#danh-sach-ung-dung)
-4. [Xu ly loi thuong gap](#xu-ly-loi-thuong-gap)
-5. [Tuyen bo phap ly & Ban quyen (Disclaimer & DMCA)](#tuyen-bo-phap-ly--ban-quyen-disclaimer--dmca)
-6. [Giay phep](#giay-phep)
+Bộ công cụ dòng lệnh mã nguồn mở hỗ trợ quản trị và cài đặt ứng dụng từ xa lên Android TV, Google TV và TV Box qua kết nối ADB không dây (Wireless ADB). Hỗ trợ đầy đủ các hệ điều hành: Android, iOS, Windows, macOS và Linux.
 
 ---
 
-## Chuan bi tren Android TV
+## Mục lục
 
-Ap dung cho tat ca thiet bi chay Android TV / Google TV (Sony, TCL, Xiaomi, Casper, Sharp, Chromecast with Google TV, Onn Box, Mi Box):
+1. [Thiết lập ban đầu trên Android TV](#thiet-lap-ban-dau-tren-android-tv)
+2. [Hướng dẫn cài đặt theo thiết bị](#huong-dan-cai-dat-theo-thiet-bi)
+   - [Điện thoại Android](#1-dien-thoai-android)
+   - [iPhone và iPad (iOS)](#2-iphone-va-ipad-ios)
+   - [Máy tính Windows](#3-may-tinh-windows)
+   - [Máy tính macOS](#4-may-tinh-macos)
+   - [Máy tính Linux](#5-may-tinh-linux)
+3. [Danh sách ứng dụng](#danh-sach-ung-dung)
+4. [Xử lý lỗi thường gặp](#xu-ly-loi-thuong-gap)
+5. [Tuyên bố pháp lý và Bản quyền](#tuyen-bo-phap-ly-va-ban-quyen)
+6. [Giấy phép](#giay-phep)
 
-1. Truy cap **Settings (Cai dat)** -> **Device Preferences (Tuy chon thiet bi)** hoac **System (He thong)** -> **About (Gioi thieu)**.
-2. Tim muc **Android TV OS Build (Ban dung he dieu hanh Android)**.
-3. Nhan phim **OK / Select** tren remote **7 lan lien tiep** den khi he thong thong bao da kich hoat che do nha phat trien.
-4. Quay lai menu truoc do -> vao muc **Developer Options (Tuy chon cho nha phat trien)**.
-5. Kich hoat cac muc sau:
-   - **USB Debugging (Go loi USB)**.
-   - **Wireless / Network Debugging (Go loi qua mang)** (neu thiet bi ho tro).
-6. Vao muc **Network & Internet (Mang & Internet)** de xac dinh **dia chi IP cua TV** (vi du: `192.168.1.15`).
+---
+
+## Thiết lập ban đầu trên Android TV
+
+Thao tác kích hoạt áp dụng chung cho các dòng TV và TV Box (Sony, TCL, Xiaomi, Casper, Sharp, Coocaa, Chromecast with Google TV, Onn Box, Mi Box):
+
+1. Mở **Cài đặt (Settings)** > **Tùy chọn thiết bị (Device Preferences)** hoặc **Hệ thống (System)** > **Giới thiệu (About)**.
+2. Tìm dòng **Bản dựng hệ điều hành Android (Android TV OS Build)**.
+3. Nhấn phím **OK** trên điều khiển **7 lần liên tiếp** cho đến khi xuất hiện thông báo: *"Bạn đã là nhà phát triển"*.
+4. Quay lại menu trước, chọn mục **Tùy chọn cho nhà phát triển (Developer Options)**.
+5. Kích hoạt hai tùy chọn:
+   - **Gỡ lỗi USB (USB Debugging)**.
+   - **Gỡ lỗi qua mạng (Wireless / Network Debugging)** *(nếu thiết bị có hỗ trợ)*.
+6. Mở mục **Mạng và Internet (Network & Internet)** để lấy **địa chỉ IP của TV** (ví dụ: `192.168.1.15`).
 
 > [!NOTE]
-> Thiet bi dieu khien va Android TV phai ket noi vao cung mot mang Wi-Fi / LAN.
+> Thiết bị điều khiển (điện thoại hoặc máy tính) và Android TV phải kết nối vào cùng một mạng Wi-Fi hoặc mạng LAN.
 
 ---
 
-## Huong dan cai dat
+## Hướng dẫn cài đặt theo thiết bị
 
-### 1. Android
+### 1. Điện thoại Android
 
-#### Phuong phap 1: Su dung Termux (Dong lenh tu dong)
-1. Cai dat ung dung Termux tu F-Droid hoac GitHub Releases.
-2. Mo Termux va thuc thi lenh:
+#### Phương pháp A: Sử dụng Termux (Tự động hóa hoàn toàn)
+1. Tải ứng dụng **Termux** từ F-Droid hoặc GitHub Releases.
+2. Mở Termux và thực thi lệnh sau:
 ```bash
 pkg update && pkg install git python android-tools -y && git clone https://github.com/nguyenlocthanh796/android-tv-adb-installer.git && cd android-tv-adb-installer && python installer.py
 ```
-3. Nhap dia chi IP cua TV.
-4. Tren man hinh TV, xac nhan hop thoai yeu cau quyen: chon **Always allow from this computer**.
-5. Chon ung dung can cai dat tu danh muc hien thi tren man hinh.
+3. Nhập địa chỉ IP của TV khi có yêu cầu.
+4. Trên màn hình TV, tích chọn **"Luôn cho phép từ máy tính này" (Always allow)** và nhấn **OK**.
+5. Chọn ứng dụng cần cài đặt trực tiếp từ danh mục trên màn hình.
 
-#### Phuong phap 2: Su dung giao dien Bugjaeger
-1. Cai dat **Bugjaeger Mobile ADB** tu Google Play Store.
-2. Ket noi toi IP cua TV qua cong `5555`.
-3. Xac nhan uy quyen ADB tren TV.
-4. Chuyen qua tab **Packages**, chon **Install APK** va su dung link truc tiep tu danh sach ben duoi.
-
----
-
-### 2. iOS (iPhone / iPad)
-
-He dieu hanh iOS gioi han thuc thi ADB binary truc tiep. Chon mot trong hai giai phap sau:
-
-#### Phuong phap 1: Nhap ma tren app Downloader cua TV (Khuyen nghi)
-1. Cai dat ung dung **Downloader by AFTVnews** tren Android TV.
-2. Tren iPhone, tra cuu ma tai tai [Danh sach ung dung](#danh-sach-ung-dung) ben duoi (vi du: `4411335` cho Phim4K TV).
-3. Nhap ma vao o URL tren TV de cai dat truc tiep.
-
-#### Phuong phap 2: Su dung Web ADB qua trinh duyet
-1. Mo Safari tren iPhone / iPad, truy cap [webadb.com](https://app.webadb.com/).
-2. Ket noi toi dia chi IP TV qua cong `5555`.
-3. Tai file APK tu danh sach va nap vao TV.
+#### Phương pháp B: Sử dụng ứng dụng Bugjaeger (Giao diện đồ họa)
+1. Cài đặt ứng dụng **Bugjaeger Mobile ADB** từ Google Play Store.
+2. Kết nối tới địa chỉ IP của TV qua cổng `5555`.
+3. Chấp nhận ủy quyền kết nối trên màn hình TV.
+4. Chuyển sang thẻ **Packages**, nhấn biểu tượng dấu **+** và sử dụng đường dẫn tải trực tiếp APK từ danh mục bên dưới.
 
 ---
 
-### 3. Windows
+### 2. iPhone và iPad (iOS)
 
-#### Phuong phap 1: Thuc thi script tu dong
-1. Tai ma nguon tu nut **Code** -> **Download ZIP** tren GitHub, giai nen.
-2. Nhap dup file `install_windows.bat` (cong cu se tu dong tai Google Platform Tools neu he thong chua co ADB).
-3. Nhap IP cua TV va thao tac theo huong dan tren man hinh Console.
+Hệ điều hành iOS giới hạn thực thi tập tin nhị phân ADB trực tiếp. Người dùng có thể lựa chọn một trong hai phương án sau:
 
-#### Phuong phap 2: Chay qua PowerShell / Command Prompt
+#### Phương pháp A: Cài đặt qua trình duyệt Web ADB
+1. Đảm bảo TV đã bật chế độ Gỡ lỗi mạng (Wireless Debugging).
+2. Mở trình duyệt Safari trên thiết bị iOS, truy cập công cụ [Web ADB](https://app.webadb.com/).
+3. Nhập IP TV và kết nối qua cổng `5555`.
+4. Tải file APK từ bảng danh sách bên dưới và nạp trực tiếp vào TV.
+
+#### Phương pháp B: Chuyển tập tin qua mạng nội bộ
+1. Tải ứng dụng **Send Files to TV** trên cả iPhone và Android TV.
+2. Tải tập tin APK mong muốn từ danh sách bên dưới về iPhone.
+3. Gửi tập tin APK sang TV và tiến hành cài đặt bằng trình quản lý tệp trên TV.
+
+---
+
+### 3. Máy tính Windows
+
+#### Phương pháp A: Tự động tải và thực thi (Không cần cài đặt trước)
+1. Tải toàn bộ mã nguồn: Nhấn **Code** > **Download ZIP** và giải nén.
+2. Nhấp đúp chuột vào tập tin `install_windows.bat`.
+*(Tập tin script sẽ tự động kiểm tra và cấu hình Google Platform Tools nếu máy chưa có ADB).*
+3. Nhập IP của TV và làm theo các bước điều hướng trên cửa sổ lệnh.
+
+#### Phương pháp B: Sử dụng PowerShell hoặc Command Prompt
 ```powershell
 winget install Google.PlatformTools
 git clone https://github.com/nguyenlocthanh796/android-tv-adb-installer.git
@@ -96,13 +100,13 @@ python installer.py
 
 ---
 
-### 4. macOS
+### 4. Máy tính macOS
 
-1. Mo Terminal va cai dat cong cu thong qua Homebrew:
+1. Mở Terminal và cài đặt môi trường thông qua Homebrew:
 ```bash
 brew install android-platform-tools python
 ```
-2. Thuc thi bo cai dat:
+2. Tải về và khởi chạy công cụ:
 ```bash
 git clone https://github.com/nguyenlocthanh796/android-tv-adb-installer.git
 cd android-tv-adb-installer
@@ -111,13 +115,13 @@ python3 installer.py
 
 ---
 
-### 5. Linux (Ubuntu / Debian / Fedora / Arch)
+### 5. Máy tính Linux (Ubuntu, Debian, Fedora, Arch Linux)
 
-1. Cai dat ADB:
-   - Ubuntu / Debian: `sudo apt update && sudo apt install -y adb python3 git`
-   - Fedora: `sudo dnf install -y android-tools python3 git`
-   - Arch Linux: `sudo pacman -S android-tools python git`
-2. Thuc thi chuong trinh:
+1. Cài đặt công cụ ADB:
+   - **Debian / Ubuntu:** `sudo apt update && sudo apt install -y adb python3 git`
+   - **Fedora:** `sudo dnf install -y android-tools python3 git`
+   - **Arch Linux:** `sudo pacman -S android-tools python git`
+2. Khởi chạy chương trình:
 ```bash
 git clone https://github.com/nguyenlocthanh796/android-tv-adb-installer.git
 cd android-tv-adb-installer
@@ -126,188 +130,225 @@ python3 installer.py
 
 ---
 
-## Danh sach ung dung
+## Danh sách ứng dụng
 
+Toàn bộ 110+ ứng dụng được phân loại rõ ràng. Nhấp vào từng danh mục để mở rộng danh sách:
 
-### TRUYỀN HÌNH -  ĐÁ BANH
+<details>
+<summary><b>TRUYỀN HÌNH & BÓNG ĐÁ (15 ứng dụng)</b></summary>
+<br>
 
-| Ten Ung Dung | Ma Downloader | Phien Ban | Link Tai Truc Tiep (APK) |
-|:---|:---:|:---|:---|
-| **Get Out 2 end** | `393939` | mới nhất • 158 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Get_Out_2.end.apk) |
-| **Get Out 2.0** | `3074016` | v2.0 • 31 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Get_Out_2.0.apk) |
-| **SportsTV v5.2.3** | `8705526` | v5.2.3 • 123 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/SportsTV_5.2.3.apk) |
-| **SportsTV v4.5** | `393939` | v4.5 • 24 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/SportsTV-v4.5-Android5.apk) |
-| **SportzX v3.2** | `393939` | v3.2 • 48 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/SportzX_3.2v.apk) |
-| **SportzX v2.6** | `393939` | v2.6 • 10 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/SportzX_2.6v.apk) |
-| **Hóng TV** | `7027363` | v1.1.8 • 81 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/hongtv.apk) |
-| **Xem TV 5.8.8** | `393939` | 5.8.8 • 59 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/XemTV_v5.8.8.apk) |
-| **CricHDaiTV_v5.12** | `393939` | v5.12 • 23 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/CricHDaiTV-v5.12.apk) |
-| **TV365_v7** | `393939` | v7.0 • 43 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/TV365_v7.apk) |
-| **vAppTV** | `9788306` | v1.0.0 • 33 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/vAppTV.apk) |
-| **VTVgoTV_v11.12.30** | `393939` | v11.12.30 • 19 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/VTVgoTV_v11.12.30.apk) |
-| **VTVprime_v1.7.0** | `393939` | v1.7.0 • 21 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/VTVprime_v1.7.0.apk) |
-| **Cricfy_V6.6** | `1213128` | v6.6 • 13 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Cricfy_V6.6.apk) |
-| **GeeSports_V3.6** | `7266756` | v3.6 • 29 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/GeeSports_%28V3.6%29.apk) |
+| STT | Tên ứng dụng | Tải về (APK) |
+|:---:|:---|:---:|
+| 1 | **Get Out 2 end** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Get_Out_2.end.apk) |
+| 2 | **Get Out 2.0** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Get_Out_2.0.apk) |
+| 3 | **SportsTV v5.2.3** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/SportsTV_5.2.3.apk) |
+| 4 | **SportsTV v4.5** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/SportsTV-v4.5-Android5.apk) |
+| 5 | **SportzX v3.2** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/SportzX_3.2v.apk) |
+| 6 | **SportzX v2.6** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/SportzX_2.6v.apk) |
+| 7 | **Hóng TV** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/hongtv.apk) |
+| 8 | **Xem TV 5.8.8** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/XemTV_v5.8.8.apk) |
+| 9 | **CricHDaiTV_v5.12** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/CricHDaiTV-v5.12.apk) |
+| 10 | **TV365_v7** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/TV365_v7.apk) |
+| 11 | **vAppTV** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/vAppTV.apk) |
+| 12 | **VTVgoTV_v11.12.30** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/VTVgoTV_v11.12.30.apk) |
+| 13 | **VTVprime_v1.7.0** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/VTVprime_v1.7.0.apk) |
+| 14 | **Cricfy_V6.6** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Cricfy_V6.6.apk) |
+| 15 | **GeeSports_V3.6** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/GeeSports_%28V3.6%29.apk) |
 
-### PHIM 4K
+</details>
 
-| Ten Ung Dung | Ma Downloader | Phien Ban | Link Tai Truc Tiep (APK) |
-|:---|:---:|:---|:---|
-| **Phim4K TV 2.6.8** | `4411335` | v2.6.8 • 119 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/phim4k_TV_2.6.8.apk) |
-| **Phim4K Mobile** | `4833418` | v2.6.1 • 31 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Phim4K%20v2.6.1%20Android%20Full.apk) |
-| **Phim4K Android** | `393939` | v2.6.1 • 26 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Phim4K%20v2.6.1%20Android.apk) |
-| **Film4k.net ATV** | `393939` | v1.0.0 • 29 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Film4kATV-arm64-v8a-debug8.apk) |
-| **Film4k.net ATV v7a** | `393939` | v1.0.0 • 20 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Film4kATV-armeabi-v7a-debug8.apk) |
-| **Film4k ATV x86_64-debug8** | `393939` | v1.0.0 • 14 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Film4kATV-x86_64-debug8.apk) |
+<details>
+<summary><b>PHIM 4K (6 ứng dụng)</b></summary>
+<br>
 
-### XEM PHIM
+| STT | Tên ứng dụng | Tải về (APK) |
+|:---:|:---|:---:|
+| 1 | **Phim4K TV 2.6.8** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/phim4k_TV_2.6.8.apk) |
+| 2 | **Phim4K Mobile** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Phim4K%20v2.6.1%20Android%20Full.apk) |
+| 3 | **Phim4K Android** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Phim4K%20v2.6.1%20Android.apk) |
+| 4 | **Film4k.net ATV** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Film4kATV-arm64-v8a-debug8.apk) |
+| 5 | **Film4k.net ATV v7a** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Film4kATV-armeabi-v7a-debug8.apk) |
+| 6 | **Film4k ATV x86_64-debug8** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Film4kATV-x86_64-debug8.apk) |
 
-| Ten Ung Dung | Ma Downloader | Phien Ban | Link Tai Truc Tiep (APK) |
-|:---|:---:|:---|:---|
-| **Gu-Phim_v1.0_Windows** | `393939` | v1.0 • 27 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Gu-Phim-v1.0-Windows.zip) |
-| **Gu-Phim_v1.0_Mobile_Tablet_TV** | `393939` | v1.0 • 20 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Gu-Phim-v1.0-Mobile-Tablet-TV.apk) |
-| **Hiphim mobile** | `393939` | v1.0.0 • 8 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/hiphim150android.apk) |
-| **Hiphim Tivi** | `393939` | v1.0.0 • 22 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/hiphimtv.apk) |
-| **NVCPhim_v2.2.8** | `2653652` | v2.2.8 • 10 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/NVCPhim_v2.2.8.apk) |
-| **NVC_Movie** | `393939` | v1.0.0 • 2 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/NVC_Movie.apk) |
-| **hieuga** | `1059695` | v1.0.0 • 3 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/hieuga.apk) |
-| **vuagiaitri** | `7716517` | v1.0.0 • 5 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/vuagiaitri.apk) |
-| **cobephim-tv** | `6207062` | v1.0.0 • 31 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/cobephimtv.apk) |
-| **cobephim mobile** | `6207062` | v1.0.0 • 10 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/cobephimtvphone_v1.5.apk) |
-| **rapphim-0.2.1-mobile** | `393939` | v0.2.1 • 4 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/rapphim-0-2-1-mobile.apk) |
-| **rapphim-1.0.1-tv** | `6766306` | v1.0.1 • 9 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/rapphim-1-0-1-tv.apk) |
-| **saigonphim-tv** | `7048453` | v1.0.0 • 6 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/saigonphim.apk) |
-| **Chợ_Phim** | `5774068` | v1.0.0 • 24 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/chophim.apk) |
-| **CloudStream_4.7.0** | `393939` | v4.7.0 • 15 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/CloudStream_%5B4.7.0%5D.apk) |
-| **NETFLY_v3** | `2844821` | v3.0 • 6 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/NETFLY_v3.apk) |
-| **NVC_Movie_TV_v2.6.10** | `1659529` | v2.6.10 • 4 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/NVCPhim_v2.2.8.apk) |
-| **TiemGiaiTri_v1.0** | `393939` | v1.0.0 • 11 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/TiemGiaiTri.apk) |
-| **VAX_Player_1.6.5** | `1387135` | v1.6.5 • 5 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/VAX_Player_1.6.5_%286666%29.apk) |
-| **VaxPlayer_1.7.6** | `393939` | v1.7.6 • 11 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/VaxPlayer1.7.6.apk) |
-| **VaxPlayer_1.7.6_iOS** | `393939` | v1.7.6 • 6 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/VaxPlayer1.7.6.ipa) |
-| **DaoPhim_TV_1.0.3** | `393939` | v1.0.3 • 31 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/daophim-1.0.3-tv.apk) |
-| **DaoPhim_Mobile** | `393939` | v1.0.0 • 6 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/daophim-mobile.apk) |
+</details>
 
-### PHẦN MỀM IPTV
+<details>
+<summary><b>XEM PHIM (23 ứng dụng)</b></summary>
+<br>
 
-| Ten Ung Dung | Ma Downloader | Phien Ban | Link Tai Truc Tiep (APK) |
-|:---|:---:|:---|:---|
-| **HSTIVI_2.6** | `393939` | v1.0.0 • 33 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/HSTIVI_2.6.apk) |
-| **IPTV_PRO** | `393939` | v1.0.0 • 46 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/IPTV_PRO.apk) |
-| **M3u-IPTV-v3.0.11-Mod** | `393939` | v3.0.11 • 14 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/m3u-iptv-3.0.19.apk) |
-| **OTT_Navigator_v1.7.4.1_Mod** | `1995826` | v1.7.4.1 • 15 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/OTT.apk) |
-| **SparkleTV** | `8439261` | v1.0.0 • 6 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/SparkleTV.apk) |
-| **TiviMate_v5.1.6_MOD** | `393939` | v5.1.6 • 27 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/TiviMate_v5.1.6_MOD.apk) |
-| **quantv** | `393939` | v1.0.0 • 17 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/quantv.apk) |
-| **televizo_v1.9.6.50_premium** | `6508980` | v1.9.6.50 • 10 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/televizo_v1.9.6.50_premium.apk) |
-| **tivimate_2.1.5_premium** | `393939` | v2.1.5 • 14 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/tivimate_2.1.5_premium.apk) |
-| **Backup_Host_5.1.6** | `4739677` | v5.1.6 • 7 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Backup_Host_5.1.6.tmb) |
-| **TiviMate_5.3.0** | `393939` | v5.3.0 • 11 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/TiviMate-5.3.0.apk) |
-| **Televizo_byphaptx52022** | `393939` | v5.2022 • 8 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Televizo_byphaptx52022.apk.zip) |
-| **Hbo Max** | `2426878` | v1.0.0 • 12 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/hbomax.apk) |
-| **Smart tube** | `393939` | v1.0.0 • 17 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/smarttube.apk) |
-| **PCRTV_4.1.0** | `4579948` | v4.1.0 • 10 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/PCRTV_%5B4.1.0%5D.apk.zip) |
-| **QTV3.9_Vip** | `5508842` | v3.9 • 19 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/QTV3.9_Vip_pass123%40123.apk) |
-| **Televizo_v1.9.6.50_Premium** | `393939` | v1.9.6.50 • 4 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Televizo_v1.9.6.50_Premium.apk) |
-| **Televizo_byphaptx52022_zip** | `393939` | v5.2022 • 3 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Televizo_byphaptx52022.apk.zip) |
-| **TiviMate_5.1.6_BannerMod_Spydog** | `393939` | v5.1.6 • 12 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/TiviMate_5.1.6___BannerM0d_Spydog.apk.zip) |
-| **TiviMate_5.1.6_v2** | `393939` | v5.1.6 • 12 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/TiviMate_5.1.6_%28v2%29.apk.zip) |
+| STT | Tên ứng dụng | Tải về (APK) |
+|:---:|:---|:---:|
+| 1 | **Gu-Phim_v1.0_Windows** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Gu-Phim-v1.0-Windows.zip) |
+| 2 | **Gu-Phim_v1.0_Mobile_Tablet_TV** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Gu-Phim-v1.0-Mobile-Tablet-TV.apk) |
+| 3 | **Hiphim mobile** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/hiphim150android.apk) |
+| 4 | **Hiphim Tivi** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/hiphimtv.apk) |
+| 5 | **NVCPhim_v2.2.8** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/NVCPhim_v2.2.8.apk) |
+| 6 | **NVC_Movie** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/NVC_Movie.apk) |
+| 7 | **hieuga** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/hieuga.apk) |
+| 8 | **vuagiaitri** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/vuagiaitri.apk) |
+| 9 | **cobephim-tv** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/cobephimtv.apk) |
+| 10 | **cobephim mobile** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/cobephimtvphone_v1.5.apk) |
+| 11 | **rapphim-0.2.1-mobile** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/rapphim-0-2-1-mobile.apk) |
+| 12 | **rapphim-1.0.1-tv** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/rapphim-1-0-1-tv.apk) |
+| 13 | **saigonphim-tv** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/saigonphim.apk) |
+| 14 | **Chợ_Phim** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/chophim.apk) |
+| 15 | **CloudStream_4.7.0** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/CloudStream_%5B4.7.0%5D.apk) |
+| 16 | **NETFLY_v3** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/NETFLY_v3.apk) |
+| 17 | **NVC_Movie_TV_v2.6.10** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/NVCPhim_v2.2.8.apk) |
+| 18 | **TiemGiaiTri_v1.0** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/TiemGiaiTri.apk) |
+| 19 | **VAX_Player_1.6.5** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/VAX_Player_1.6.5_%286666%29.apk) |
+| 20 | **VaxPlayer_1.7.6** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/VaxPlayer1.7.6.apk) |
+| 21 | **VaxPlayer_1.7.6_iOS** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/VaxPlayer1.7.6.ipa) |
+| 22 | **DaoPhim_TV_1.0.3** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/daophim-1.0.3-tv.apk) |
+| 23 | **DaoPhim_Mobile** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/daophim-mobile.apk) |
 
-### YOUTUBE TV
+</details>
 
-| Ten Ung Dung | Ma Downloader | Phien Ban | Link Tai Truc Tiep (APK) |
-|:---|:---:|:---|:---|
-| **ToTube** | `393939` | v1.0.0 • 15 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/ToTube.apk) |
-| **Youtube_1.0.8** | `8788599` | v1.0.8 • 31 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/ytb2.apk) |
-| **vanced_youtube_v20** | `393939` | v20 • 23 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/vanced_youtube_v20.apk) |
-| **vanced_youtube_music** | `393939` | v8.40.54 • 5 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/vanced.to_vanced_youtube_music.apk) |
-| **microg_v0.3.13** | `393939` | v0.3.13 • 11 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/microg_v0.3.13.apk) |
-| **mapvoice** | `7701927` | v1.0.0 • 6 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/mapvoice.apk) |
-| **supervoice-mod-ATV14** | `393939` | v14.0 • 6 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/supervoice-mod-ATV14.apk) |
-| **supervoice_ATV9+** | `393939` | v9.0+ • 3 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/supervoice_ATV9%2B.apk) |
-| **supperVoice-2.2** | `393939` | v2.2 • 3 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/supperVoice-2.2.apk) |
+<details>
+<summary><b>PHẦN MỀM IPTV (20 ứng dụng)</b></summary>
+<br>
 
-### TOOL (CÔNG CỤ)
+| STT | Tên ứng dụng | Tải về (APK) |
+|:---:|:---|:---:|
+| 1 | **HSTIVI_2.6** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/HSTIVI_2.6.apk) |
+| 2 | **IPTV_PRO** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/IPTV_PRO.apk) |
+| 3 | **M3u-IPTV-v3.0.11-Mod** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/m3u-iptv-3.0.19.apk) |
+| 4 | **OTT_Navigator_v1.7.4.1_Mod** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/OTT.apk) |
+| 5 | **SparkleTV** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/SparkleTV.apk) |
+| 6 | **TiviMate_v5.1.6_MOD** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/TiviMate_v5.1.6_MOD.apk) |
+| 7 | **quantv** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/quantv.apk) |
+| 8 | **televizo_v1.9.6.50_premium** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/televizo_v1.9.6.50_premium.apk) |
+| 9 | **tivimate_2.1.5_premium** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/tivimate_2.1.5_premium.apk) |
+| 10 | **Backup_Host_5.1.6** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Backup_Host_5.1.6.tmb) |
+| 11 | **TiviMate_5.3.0** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/TiviMate-5.3.0.apk) |
+| 12 | **Televizo_byphaptx52022** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Televizo_byphaptx52022.apk.zip) |
+| 13 | **Hbo Max** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/hbomax.apk) |
+| 14 | **Smart tube** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/smarttube.apk) |
+| 15 | **PCRTV_4.1.0** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/PCRTV_%5B4.1.0%5D.apk.zip) |
+| 16 | **QTV3.9_Vip** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/QTV3.9_Vip_pass123%40123.apk) |
+| 17 | **Televizo_v1.9.6.50_Premium** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Televizo_v1.9.6.50_Premium.apk) |
+| 18 | **Televizo_byphaptx52022_zip** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Televizo_byphaptx52022.apk.zip) |
+| 19 | **TiviMate_5.1.6_BannerMod_Spydog** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/TiviMate_5.1.6___BannerM0d_Spydog.apk.zip) |
+| 20 | **TiviMate_5.1.6_v2** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/TiviMate_5.1.6_%28v2%29.apk.zip) |
 
-| Ten Ung Dung | Ma Downloader | Phien Ban | Link Tai Truc Tiep (APK) |
-|:---|:---:|:---|:---|
-| **UFO VPN v2.2.3** | `393939` | v1.0.0 • 1.638 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/UFOVPNv2.2.3.apk) |
-| **Kiwi VPN v56.20.12** | `393939` | v1.0.0 • 1.637 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/KiwiVPNv56.20.12.apk) |
-| **Coc_Coc_Lite_1.6** | `393939` | v1.6 • 7 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Coc_Coc_Lite_1.6.apk) |
-| **Autostart+v4.1.1_Modded_** | `393939` | v4.1.1 • 4 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Autostart%2Bv4.1.1_Modded_.apk) |
-| **_ATV_app__TV_AppsDrawer** | `393939` | v1.0.0 • 228 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/_ATV_app__TV_AppsDrawer.apk) |
-| **atvTools_v1.3.0_42-mod** | `393939` | v1.3.0 • 4 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/atvTools_v1.3.0_42-mod.apk) |
-| **tvQuickActions_Pro_v3.6.0__Patched** | `393939` | v3.6.0 • 2 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/tvQuickActions_Pro_v3.6.0__Patched_.apk) |
-| **TvQuickAction_3.0.8** | `393939` | v3.0.8 • 3 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/TvQuickAction_3.0.8.apk) |
-| **TvQuickActions_Pro_v3.7.0** | `393939` | v3.7.0 (405) • 4 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/tvQuickActions_Pro_v3.7.0_%28405%29.apk) |
-| **Remote_for_Android_TV_v6.0.3** | `393939` | v6.0.3 • 2 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Remote_for_Android_TV_v6.0.3_%28no_ads%29.apk) |
-| **Developer_Tools_2.1.1** | `393939` | v2.1.1 • 4 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Developer_Tools_2.1.1.apk.jar) |
-| **Buttons_remapper_v1.2** | `393939` | v1.2 • 2 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Buttons_remapper_v1.2.apk) |
-| **Button_Mapper_v3.2** | `393939` | v3.2 • 1 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Button_Mapper_v3.2.apk.zip) |
-| **Add_Tivi_Remote** | `393939` | v1.0.0 • 2 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Add_Tivi_Remote.apk) |
+</details>
 
-### GIAO DIỆN TIVI
+<details>
+<summary><b>YOUTUBE TV (9 ứng dụng)</b></summary>
+<br>
 
-| Ten Ung Dung | Ma Downloader | Phien Ban | Link Tai Truc Tiep (APK) |
-|:---|:---:|:---|:---|
-| **ATV Launcher** | `393939` | v0136 • 20 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/ATV-Launcher-v0136.apk) |
-| **Pro_Launcher_(PhapViet)** | `8513629` | v1.0.0 • 15 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Pro_Launcher_%28PhapViet%29.apk) |
-| **Project_Launcher** | `393939` | v1.0.0 • 9 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Project_Launcher.apk) |
-| **ProTVLauncher_V5** | `6410730` | v5.0 • 8 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/ProTVLauncher_V5.apk) |
-| **Launcher-Manager_1.0.4** | `393939` | v1.0.4 • 4 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Launcher-Manager-1.0.4.apk) |
-| **HomeTV_Launcher_6.3.1** | `393939` | v6.3.1 • 9 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/HomeTV_Launcher_6.3.1.apk) |
-| **Google_TV_Home_1.0.4** | `393939` | v1.0.4 • 12 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Google_TV_Home_1.0.4.apk) |
+| STT | Tên ứng dụng | Tải về (APK) |
+|:---:|:---|:---:|
+| 1 | **ToTube** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/ToTube.apk) |
+| 2 | **Youtube_1.0.8** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/ytb2.apk) |
+| 3 | **vanced_youtube_v20** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/vanced_youtube_v20.apk) |
+| 4 | **vanced_youtube_music** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/vanced.to_vanced_youtube_music.apk) |
+| 5 | **microg_v0.3.13** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/microg_v0.3.13.apk) |
+| 6 | **mapvoice** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/mapvoice.apk) |
+| 7 | **supervoice-mod-ATV14** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/supervoice-mod-ATV14.apk) |
+| 8 | **supervoice_ATV9+** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/supervoice_ATV9%2B.apk) |
+| 9 | **supperVoice-2.2** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/supperVoice-2.2.apk) |
 
-### STORE (CỬA HÀNG TẢI APP)
+</details>
 
-| Ten Ung Dung | Ma Downloader | Phien Ban | Link Tai Truc Tiep (APK) |
-|:---|:---:|:---|:---|
-| **Aptoide_TV_5.1.2** | `393939` | v5.1.2 • 10 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Aptoide_TV_5.1.2.apk) |
-| **DLStore_v16.0.4** | `5103033` | v16.0.4 • 46 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/DLStore_v16.0.4.apk) |
-| **HDPlay_Store** | `393939` | v3.1.9 • 19 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/HDPlay_Store_%5B3.1.9%5D.apk) |
-| **Movie Legend Store** | `4369204` | v3.1.5 • 8 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Movie%20Legend%20Store.apk) |
-| **TTV_Store_3.0** | `393939` | v3.0 • 10 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/TTV_Store_3.0.apk) |
-| **beecubestore2** | `393939` | v2.0 • 14 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/beecubestore2.apk) |
-| **Kho_Ung_Dung_MCU** | `5212814` | v1.0 • 35 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/box_store_mcu_v1.apk) |
-| **EMOTN_Store** | `393939` | v1.0.0 • 3 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/emotnstore.apk) |
-| **FERRARI_DOWNLOADER** | `5356270` | v1.0.0 • 10 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/ferraridownloader.apk) |
-| **MStore_v2.0** | `393939` | v2.0 • 11 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/mstore.apk) |
-| **ĐôngAnhStore_25.3.2** | `393939` | v25.3.2 • 44 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Dong_Anh_TV_3.6.apk) |
-| **BoxStoreMCU_v2.0** | `393939` | v2.0 • 24 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/BoxStoreMCU_v2.0.apk) |
+<details>
+<summary><b>TOOL (CÔNG CỤ) (14 ứng dụng)</b></summary>
+<br>
 
-### APP NHẬP CODE &amp; QUẢN LÝ TẬP TIN
+| STT | Tên ứng dụng | Tải về (APK) |
+|:---:|:---|:---:|
+| 1 | **UFO VPN v2.2.3** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/UFOVPNv2.2.3.apk) |
+| 2 | **Kiwi VPN v56.20.12** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/KiwiVPNv56.20.12.apk) |
+| 3 | **Coc_Coc_Lite_1.6** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Coc_Coc_Lite_1.6.apk) |
+| 4 | **Autostart+v4.1.1_Modded_** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Autostart%2Bv4.1.1_Modded_.apk) |
+| 5 | **_ATV_app__TV_AppsDrawer** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/_ATV_app__TV_AppsDrawer.apk) |
+| 6 | **atvTools_v1.3.0_42-mod** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/atvTools_v1.3.0_42-mod.apk) |
+| 7 | **tvQuickActions_Pro_v3.6.0__Patched** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/tvQuickActions_Pro_v3.6.0__Patched_.apk) |
+| 8 | **TvQuickAction_3.0.8** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/TvQuickAction_3.0.8.apk) |
+| 9 | **TvQuickActions_Pro_v3.7.0** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/tvQuickActions_Pro_v3.7.0_%28405%29.apk) |
+| 10 | **Remote_for_Android_TV_v6.0.3** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Remote_for_Android_TV_v6.0.3_%28no_ads%29.apk) |
+| 11 | **Developer_Tools_2.1.1** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Developer_Tools_2.1.1.apk.jar) |
+| 12 | **Buttons_remapper_v1.2** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Buttons_remapper_v1.2.apk) |
+| 13 | **Button_Mapper_v3.2** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Button_Mapper_v3.2.apk.zip) |
+| 14 | **Add_Tivi_Remote** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Add_Tivi_Remote.apk) |
 
-| Ten Ung Dung | Ma Downloader | Phien Ban | Link Tai Truc Tiep (APK) |
-|:---|:---:|:---|:---|
-| **Downloader_AFTV_v1.4.5** | `393939` | v1.4.5 • 28 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Downloader_AFTV_v1.4.5.apk) |
-| **Downloader_AFTV_v1.5.3** | `393939` | v1.5.3 • 15 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Downloader_AFTV_v1.5.3.apk) |
-| **File_Manager_3.8.2** | `393939` | v3.8.2 • 10 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/File_Manager_3.8.2.apk) |
-| **Xplorer_File_Manager_Premium** | `393939` | Premium • 10 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Xplorer_File_Manager_Premium.apk) |
-| **FERRARI_DOWNLOADER_zip** | `393939` | v1.0.0 • 4 lượt tải | [Tai APK](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/ferraridownloader.apk) |
+</details>
+
+<details>
+<summary><b>GIAO DIỆN TIVI (7 ứng dụng)</b></summary>
+<br>
+
+| STT | Tên ứng dụng | Tải về (APK) |
+|:---:|:---|:---:|
+| 1 | **ATV Launcher** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/ATV-Launcher-v0136.apk) |
+| 2 | **Pro_Launcher_(PhapViet)** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Pro_Launcher_%28PhapViet%29.apk) |
+| 3 | **Project_Launcher** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Project_Launcher.apk) |
+| 4 | **ProTVLauncher_V5** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/ProTVLauncher_V5.apk) |
+| 5 | **Launcher-Manager_1.0.4** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Launcher-Manager-1.0.4.apk) |
+| 6 | **HomeTV_Launcher_6.3.1** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/HomeTV_Launcher_6.3.1.apk) |
+| 7 | **Google_TV_Home_1.0.4** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Google_TV_Home_1.0.4.apk) |
+
+</details>
+
+<details>
+<summary><b>STORE (CỬA HÀNG TẢI APP) (12 ứng dụng)</b></summary>
+<br>
+
+| STT | Tên ứng dụng | Tải về (APK) |
+|:---:|:---|:---:|
+| 1 | **Aptoide_TV_5.1.2** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Aptoide_TV_5.1.2.apk) |
+| 2 | **DLStore_v16.0.4** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/DLStore_v16.0.4.apk) |
+| 3 | **HDPlay_Store** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/HDPlay_Store_%5B3.1.9%5D.apk) |
+| 4 | **Movie Legend Store** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Movie%20Legend%20Store.apk) |
+| 5 | **TTV_Store_3.0** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/TTV_Store_3.0.apk) |
+| 6 | **beecubestore2** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/beecubestore2.apk) |
+| 7 | **Kho_Ung_Dung_MCU** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/box_store_mcu_v1.apk) |
+| 8 | **EMOTN_Store** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/emotnstore.apk) |
+| 9 | **FERRARI_DOWNLOADER** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/ferraridownloader.apk) |
+| 10 | **MStore_v2.0** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/mstore.apk) |
+| 11 | **ĐôngAnhStore_25.3.2** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Dong_Anh_TV_3.6.apk) |
+| 12 | **BoxStoreMCU_v2.0** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/BoxStoreMCU_v2.0.apk) |
+
+</details>
+
+<details>
+<summary><b>APP NHẬP CODE & QUẢN LÝ TẬP TIN (5 ứng dụng)</b></summary>
+<br>
+
+| STT | Tên ứng dụng | Tải về (APK) |
+|:---:|:---|:---:|
+| 1 | **Downloader_AFTV_v1.4.5** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Downloader_AFTV_v1.4.5.apk) |
+| 2 | **Downloader_AFTV_v1.5.3** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Downloader_AFTV_v1.5.3.apk) |
+| 3 | **File_Manager_3.8.2** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/File_Manager_3.8.2.apk) |
+| 4 | **Xplorer_File_Manager_Premium** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/Xplorer_File_Manager_Premium.apk) |
+| 5 | **FERRARI_DOWNLOADER_zip** | [Tải xuống](https://pub-fb13fe1daa2c4cf0acf3075c535924da.r2.dev/app/ferraridownloader.apk) |
+
+</details>
 
 ---
 
-## Xu ly loi thuong gap
+## Xử lý lỗi thường gặp
 
-* **failed to connect to <IP>:5555: Connection refused**
-  - Kiem tra ket noi mang giua hai thiet bi (phai cung mang LAN / Wi-Fi).
-  - Khoi dong lai tinh nang USB Debugging hoac khoi dong lai Android TV.
-* **device unauthorized**
-  - Man hinh TV chua xac thuc khoa bao mat. Xac nhan tren TV va danh dau chon **Always allow from this computer**.
-* **INSTALL_FAILED_UPDATE_INCOMPATIBLE**
-  - Ung dung tren TV bi xung dot chu ky (signature) voi ban moi. Go cai dat ban cu tren TV truoc khi cai dat lai.
-
----
-
-## Tuyen bo phap ly & Ban quyen (Disclaimer & DMCA)
-
-1. **Muc dich phi thuong mai**: Du an duoc thuc hien cho muc dich nghien cuu hoc thuat, phan tich ky thuat ket noi giao thuc ADB va ho tro nguoi dung quan tri thiet bi ca nhan. Tac gia khong kinh doanh, khong thu phi va khong quang cao duoi bat ky hinh thuc nao.
-2. **Khong luu tru du lieu (Zero Hosting)**: Tac gia va repository nay hoan toan khong luu tru, khong sua doi va khong truc tiep phan phoi bat ky tep tin nhi phan (APK/IPA) nao tren may chu. Toan bo duong dan duoc tong hop tu nguon cong khai tren Internet (nguon: tinhlagi).
-3. **Trach nhiem nguoi dung**: Nguoi dung tu chiu trach nhiem phap ly ve viec tai ve, cai dat va su dung cac ung dung tren thiet bi cua minh phu hop voi luat phap so tai va thoa thuan nguoi dung cua tung ung dung.
-4. **Chinh sach DMCA & Go bo noi dung (Notice and Takedown)**: Chu so huu ban quyen hoac nha phat trien co quyen yeu cau go bo bat ky duong dan trich dan nao lien quan den san pham cua minh. Vui long mo GitHub Issue hoac gui email ve: `nguyenlocthanh796@users.noreply.github.com`. Duong dan trich dan se duoc go bo khoi danh sach trong vong 24-48 gio sau khi xac thuc thong tin.
+* **Lỗi `failed to connect to <IP>:5555: Connection refused`**
+  - Kiểm tra xem TV và thiết bị điều khiển đã kết nối chung mạng nội bộ hay chưa.
+  - Tắt và bật lại tính năng Gỡ lỗi USB (USB Debugging) trên Android TV, hoặc khởi động lại thiết bị.
+* **Lỗi `device unauthorized`**
+  - Màn hình TV chưa nhận được xác nhận ủy quyền. Hãy nhìn lên màn hình TV, tích chọn ô **"Luôn cho phép từ máy tính này"** và nhấn **OK**.
+* **Lỗi `INSTALL_FAILED_UPDATE_INCOMPATIBLE`**
+  - Phiên bản ứng dụng đang cài bị xung đột chữ ký với bản đã có trên TV. Hãy gỡ bỏ bản cũ trên TV trước khi tiến hành cài lại.
 
 ---
 
-## Giay phep
+## Tuyên bố pháp lý và Bản quyền
 
-Du an duoc phat hanh theo giay phep MIT License. Xem chi tiet tai tap tin `LICENSE`.
+1. **Mục đích phi thương mại:** Dự án được xây dựng và duy trì hoàn toàn vì mục đích học thuật, nghiên cứu giao thức điều khiển thiết bị qua ADB và hỗ trợ quản trị thiết bị cá nhân. Tác giả không kinh doanh, không thu bất kỳ khoản phí nào và không phân phối quảng cáo.
+2. **Không lưu trữ nội dung (Zero Hosting):** Tác giả và kho lưu trữ này hoàn toàn không lưu trữ, không chỉnh sửa và không phát tán bất kỳ tập tin nhị phân (APK/IPA) nào. Toàn bộ đường dẫn tải về được trích dẫn khách quan từ các nguồn tổng hợp công khai trên Internet (nguồn: tinhlagi).
+3. **Trách nhiệm người dùng:** Người dùng hoàn toàn tự chịu trách nhiệm về tính pháp lý khi tải về, cài đặt và sử dụng các ứng dụng trên thiết bị cá nhân của mình theo quy định pháp luật sở tại.
+4. **Quy trình gỡ bỏ nội dung (Notice and Takedown):** Chủ sở hữu bản quyền có quyền yêu cầu gỡ bỏ bất kỳ liên kết trích dẫn nào liên quan đến sản phẩm của mình. Vui lòng mở GitHub Issue hoặc gửi thông báo tới: `nguyenlocthanh796@users.noreply.github.com`. Liên kết sẽ được gỡ bỏ khỏi kho dữ liệu trong vòng 24 đến 48 giờ sau khi tiếp nhận thông tin hợp lệ.
+
+---
+
+## Giấy phép
+
+Dự án được phát hành theo giấy phép mã nguồn mở **MIT License**. Xem chi tiết tại tập tin [LICENSE](LICENSE).

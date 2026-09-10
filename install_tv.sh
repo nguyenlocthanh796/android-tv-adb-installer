@@ -111,7 +111,7 @@ if not results:
     print('Không tìm thấy app phù hợp!')
     sys.exit(0)
 for i, a in enumerate(results):
-    print(f\"{i+1}. [{a['category']}] {a['name']} ({a.get('meta','')})\")
+    print(f"{i+1}. [{a['category']}] {a['name']}")
 sel = input('Chọn số thứ tự app để cài (hoặc Enter bỏ qua): ')
 if sel.isdigit() and 1 <= int(sel) <= len(results):
     app = results[int(sel)-1]
@@ -137,7 +137,7 @@ if c_idx.isdigit() and 1 <= int(c_idx) <= len(cats):
     cat_name = cats[int(c_idx)-1]
     cat_apps = [a for a in apps if a['category'] == cat_name]
     for j, a in enumerate(cat_apps):
-        print(f\"  {j+1}. {a['name']} ({a.get('meta','')})\")
+        print(f\"  {j+1}. {a['name']}\")
     a_idx = input('Chọn số app để cài (hoặc A để cài toàn bộ danh mục): ')
     if a_idx.upper() == 'A':
         for a in cat_apps:

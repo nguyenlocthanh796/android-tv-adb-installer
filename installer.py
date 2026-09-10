@@ -103,7 +103,7 @@ def main():
                 print("[!] Không tìm thấy ứng dụng nào.")
                 continue
             for i, a in enumerate(results, 1):
-                print(f"{i:2d}. [{a['category']}] {a['name']} - Code: {a.get('code','')} - {a.get('meta','')}")
+                print(f"{i:2d}. [{a['category']}] {a['name']}")
             sel = input("\nChọn số thứ tự để cài (Enter để quay lại): ").strip()
             if sel.isdigit() and 1 <= int(sel) <= len(results):
                 app = results[int(sel)-1]
@@ -112,13 +112,13 @@ def main():
             cats = sorted(list(set(a["category"] for a in apps)))
             for i, c in enumerate(cats, 1):
                 count = sum(1 for a in apps if a["category"] == c)
-                print(f"{i:2d}. {c} ({count} apps)")
+                print(f"{i:2d}. {c} ({count} ứng dụng)")
             c_sel = input(f"Chọn danh mục [1-{len(cats)}]: ").strip()
             if c_sel.isdigit() and 1 <= int(c_sel) <= len(cats):
                 cat_name = cats[int(c_sel)-1]
                 cat_apps = [a for a in apps if a["category"] == cat_name]
                 for j, a in enumerate(cat_apps, 1):
-                    print(f"  {j:2d}. {a['name']} ({a.get('meta','')})")
+                    print(f"  {j:2d}. {a['name']}")
                 a_sel = input("Chọn số app (hoặc 'all' để cài tất cả): ").strip().lower()
                 if a_sel == "all":
                     for a in cat_apps:
