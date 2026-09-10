@@ -1,48 +1,131 @@
-# Android TV ADB Installer (Cài App TV từ Điện Thoại)
+# 📺 Android TV ADB Installer (Cài App TV từ Điện Thoại & Máy Tính)
 
-> Tổng hợp hơn 110+ ứng dụng Android TV, Google TV, TV Box tốt nhất (Xem Phim 4K, Bóng Đá, Truyền Hình IPTV, YouTube Không Quảng Cáo, Tiện Ích) và công cụ tự động cài đặt qua ADB WiFi trực tiếp từ điện thoại Android (Termux) hoặc máy tính.
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS%20%7C%20Windows%20%7C%20macOS%20%7C%20Linux-brightgreen.svg)]()
+[![Apps](https://img.shields.io/badge/apps-110%2B%20ATV%20Apps-orange.svg)](#-danh-sách-110-ứng-dụng)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/nguyenlocthanh796/android-tv-adb-installer/pulls)
+
+> **Tổng hợp hơn 110+ ứng dụng Android TV, Google TV, TV Box tốt nhất (Xem Phim 4K, Bóng Đá, Truyền Hình IPTV, YouTube Không Quảng Cáo, Tiện Ích) và công cụ tự động cài đặt qua ADB WiFi trực tiếp từ Điện thoại (Android, iOS) hoặc Máy tính (Windows, macOS, Linux).**
 
 ---
 
-## Hướng dẫn cài đặt từ Điện Thoại sang TV (Không cần máy tính)
+## 📑 Mục lục
+1. [Bước chuẩn bị: Bật ADB trên Android TV](#-bước-chuẩn-bị-bật-adb-trên-android-tv)
+2. [Hướng dẫn cài đặt theo từng hệ điều hành](#-hướng-dẫn-cài-đặt)
+   - [📱 Điện thoại Android (Termux / Bugjaeger)](#1--điện-thoại-android)
+   - [🍎 Điện thoại iPhone / iPad (iOS)](#2--iphone--ipad-ios)
+   - [🪟 Máy tính Windows](#3--máy-tính-windows)
+   - [🍏 Máy tính macOS](#4--máy-tính-macos)
+   - [🐧 Máy tính Linux](#5--máy-tính-linux)
+3. [📦 Danh sách 110+ Ứng dụng & Mã Downloader](#-danh-sách-110-ứng-dụng)
+4. [❓ Khắc phục sự cố thường gặp (FAQ)](#-khắc-phục-sự-cố-thường-gặp)
 
-### Bước 1: Bật ADB Debugging trên Android TV
-1. Vào **Cài đặt (Settings)** trên TV -> **Tùy chọn thiết bị (Device Preferences)** -> **Giới thiệu (About)**.
-2. Tìm dòng **Bản dựng hệ điều hành Android (Build Number)** và bấm nút **OK/Chọn 7 lần** trên điều khiển cho đến khi hiện thông báo *"Bạn đã là nhà phát triển"*.
-3. Quay lại menu trước -> vào mục **Tùy chọn cho nhà phát triển (Developer Options)**.
-4. Bật:
+---
+
+## ⚙️ Bước chuẩn bị: Bật ADB trên Android TV
+
+Áp dụng cho mọi dòng TV (Sony, TCL, Xiaomi, Casper, Sharp, Casper, Coocaa, Chromecast with Google TV, Onn Box, Mi Box):
+
+1. Mở **Cài đặt (Settings)** trên TV -> **Tùy chọn thiết bị (Device Preferences)** hoặc **Hệ thống (System)** -> **Giới thiệu (About)**.
+2. Cuộn xuống dòng **Bản dựng hệ điều hành Android (Android TV OS Build)**.
+3. Bấm phím **OK / Chọn** trên điều khiển liên tục **7 lần** đến khi thấy dòng chữ: *"Bạn đã là nhà phát triển!"*.
+4. Quay lại cài đặt -> Mở menu mới xuất hiện: **Tùy chọn cho nhà phát triển (Developer Options)**.
+5. Gạt bật 2 mục:
    - **Gỡ lỗi USB (USB Debugging)**.
-   - **Gỡ lỗi qua mạng (Network Debugging / Wireless Debugging)** (nếu có).
-5. Vào **Cài đặt mạng (Network & Internet)** xem địa chỉ **IP của TV** (ví dụ: `192.168.1.50`). Đảm bảo TV và điện thoại cùng kết nối vào một mạng Wi-Fi.
+   - **Gỡ lỗi qua mạng (Wireless / Network Debugging)** (nếu có).
+6. Mở **Mạng & Internet (Network & Internet)** xem **địa chỉ IP của TV** (Ví dụ: `192.168.1.15`).
+> **Lưu ý:** Thiết bị điều khiển (Điện thoại/Máy tính) và Android TV phải kết nối chung một mạng Wi-Fi.
 
-### Bước 2: Cài đặt và chạy trên Điện Thoại Android (Termux)
-1. Tải ứng dụng **Termux** từ F-Droid hoặc GitHub Termux Release.
-2. Mở Termux và dán lệnh sau:
+---
+
+## 🚀 Hướng dẫn cài đặt
+
+### 1. 📱 Điện thoại Android
+
+#### Cách A: Chạy tự động qua Termux (Khuyên dùng)
+1. Tải và cài đặt ứng dụng **Termux** từ [F-Droid](https://f-droid.org/en/packages/com.termux/) hoặc [GitHub Termux Release](https://github.com/termux/termux-app/releases).
+2. Mở Termux và dán đúng 1 dòng lệnh sau:
 ```bash
-pkg update && pkg install git python android-tools -y
+pkg update && pkg install git python android-tools -y && git clone https://github.com/nguyenlocthanh796/android-tv-adb-installer.git && cd android-tv-adb-installer && python installer.py
+```
+3. Nhập IP của TV. Nhìn màn hình TV và bấm chọn **"Luôn cho phép từ máy tính này" (Always allow)**.
+4. Chọn app cần cài, công cụ tự động tải và cài đặt lên TV.
+
+#### Cách B: Dùng ứng dụng có giao diện Bugjaeger
+1. Cài ứng dụng **Bugjaeger Mobile ADB** từ Google Play Store trên điện thoại.
+2. Mở app, bấm biểu tượng cắm dây/kết nối góc trên, nhập IP của TV và nhấn **Connect**.
+3. Chấp nhận ủy quyền ADB trên màn hình TV.
+4. Vào tab **Packages (Gói)** -> bấm dấu **+** -> Chọn **Select APK file** hoặc dán trực tiếp link APK từ [bảng danh sách bên dưới](#-danh-sách-110-ứng-dụng).
+
+---
+
+### 2. 🍎 iPhone / iPad (iOS)
+
+Hệ điều hành iOS bị giới hạn chạy file nhị phân ADB trực tiếp, bạn sử dụng 1 trong 2 cách sau:
+
+#### Cách A: Cài app Downloader trên TV (Nhanh nhất từ iPhone)
+1. Mở App Store trên TV, tìm và cài đặt ứng dụng **Downloader by AFTVnews**.
+2. Trên iPhone, mở trình duyệt Safari truy cập trang này: [https://github.com/nguyenlocthanh796/android-tv-adb-installer](https://github.com/nguyenlocthanh796/android-tv-adb-installer).
+3. Tìm ứng dụng muốn cài trong [bảng bên dưới](#-danh-sách-110-ứng-dụng), lấy **Mã Downloader** (Ví dụ: `4411335` cho Phim4K TV).
+4. Nhập mã này vào ô URL trên TV trong ứng dụng Downloader để tự động cài đặt.
+
+#### Cách B: Sử dụng Web ADB trên trình duyệt Safari / Chrome
+1. Đảm bảo TV đã bật ADB WiFi.
+2. Mở trình duyệt trên iPhone/iPad truy cập công cụ Web ADB (như [webadb.com](https://app.webadb.com/)).
+3. Kết nối với IP TV qua cổng 5555 và tải tệp APK lên TV.
+
+---
+
+### 3. 🪟 Máy tính Windows
+
+#### Cách 1: Chạy file Click-and-Run (Không cần gõ lệnh)
+1. Tải toàn bộ repository về máy: Bấm nút xanh **Code** -> **Download ZIP** -> Giải nén.
+2. Nhấp đúp chuột vào file **`install_windows.bat`**.
+*(Script sẽ tự động tải bộ Google Platform Tools nếu máy bạn chưa có `adb`).*
+3. Nhập IP TV và thao tác theo menu trên màn hình.
+
+#### Cách 2: Dùng PowerShell / CMD
+```powershell
+winget install Google.PlatformTools
 git clone https://github.com/nguyenlocthanh796/android-tv-adb-installer.git
 cd android-tv-adb-installer
 python installer.py
 ```
-*(Hoặc chạy script shell: `bash install_tv.sh`)*
-
-3. Nhập địa chỉ **IP của TV** khi được hỏi. Nhìn lên màn hình TV và bấm chọn **"Luôn cho phép từ máy này" (Always allow)**.
-4. Chọn app muốn cài từ menu, ứng dụng sẽ được tải và cài đặt tự động lên TV trong vài giây.
 
 ---
 
-## Cách chạy trên Máy Tính (Windows / macOS / Linux)
+### 4. 🍏 Máy tính macOS
 
-Yêu cầu máy tính có cài sẵn `adb` và `python3`.
+1. Mở ứng dụng **Terminal**.
+2. Cài đặt công cụ ADB (thông qua Homebrew):
+```bash
+brew install android-platform-tools python
+```
+3. Tải và chạy công cụ:
 ```bash
 git clone https://github.com/nguyenlocthanh796/android-tv-adb-installer.git
 cd android-tv-adb-installer
-python installer.py
+python3 installer.py
 ```
 
 ---
 
-## Danh Sách Đầy Đủ 110+ Ứng Dụng (Link Trực Tiếp & Mã Downloader)
+### 5. 🐧 Máy tính Linux (Ubuntu, Debian, Fedora, Arch)
+
+1. Mở Terminal và cài đặt gói ADB:
+   - **Ubuntu/Debian:** `sudo apt update && sudo apt install -y adb python3 git`
+   - **Fedora:** `sudo dnf install -y android-tools python3 git`
+   - **Arch Linux:** `sudo pacman -S android-tools python git`
+2. Tải và chạy:
+```bash
+git clone https://github.com/nguyenlocthanh796/android-tv-adb-installer.git
+cd android-tv-adb-installer
+python3 installer.py
+```
+
+---
+
+## 📦 Danh sách 110+ Ứng Dụng
 
 
 ### 📂 TRUYỀN HÌNH - ⚽ ĐÁ BANH
@@ -203,7 +286,21 @@ python installer.py
 
 ---
 
-## Nguồn dữ liệu & Ghi chú
-- Dữ liệu trích xuất từ kho ứng dụng [tinhlagi.pro](https://tinhlagi.pro/app/).
-- Mã Downloader sử dụng trực tiếp trên ứng dụng **Downloader by AFTVnews** trên Android TV / Fire TV.
-- Bản quyền các ứng dụng thuộc về nhà phát triển tương ứng.
+## ❓ Khắc phục sự cố thường gặp
+
+* **Lỗi `failed to connect to <IP>:5555: Connection refused`:**
+  - Kiểm tra xem TV và điện thoại/máy tính có đang kết nối chung mạng Wi-Fi hay không.
+  - Một số dòng TV (như Xiaomi, TCL) cần khởi động lại tính năng USB Debugging hoặc khởi động lại TV.
+* **Lỗi `device unauthorized`:**
+  - Màn hình TV chưa bấm đồng ý xác thực. Hãy nhìn màn hình TV và bấm chọn **"Always allow from this computer" (Luôn cho phép)**.
+* **Lỗi `INSTALL_FAILED_UPDATE_INCOMPATIBLE`:**
+  - Trên TV đã có app phiên bản khác xung đột chữ ký. Cần gỡ cài đặt phiên bản cũ trên TV trước rồi mới cài lại.
+
+---
+
+## 🌟 Từ khóa tìm kiếm (SEO Tags)
+`cài app android tv`, `adb wifi tivi`, `cài apk lên google tv`, `cài đặt app tivi bằng điện thoại`, `kho ứng dụng tivi box`, `xem bóng đá trên android tv`, `phim 4k apk`, `smarttube không quảng cáo`, `tivimate mod iptv`, `termux adb android tv`.
+
+## 📜 Giấy phép & Tuyên bố miễn trừ trách nhiệm
+- Dữ liệu tổng hợp từ các nguồn chia sẻ cộng đồng ([tinhlagi.pro](https://tinhlagi.pro/app/)).
+- Dự án mã nguồn mở phục vụ mục đích học tập, quản trị thiết bị cá nhân. Mọi bản quyền ứng dụng thuộc về nhà phát triển tương ứng.
